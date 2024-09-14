@@ -1,9 +1,10 @@
 package com.paras.bsn.user;
 
+import com.paras.bsn.book.Book;
+import com.paras.bsn.history.BookTransactionHistory;
 import com.paras.bsn.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -44,8 +45,14 @@ public class User implements UserDetails, Principal {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
+
     @CreatedDate
-    @Column(updatable = false,nullable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdDate;
     @LastModifiedDate
     @Column(insertable = false)
