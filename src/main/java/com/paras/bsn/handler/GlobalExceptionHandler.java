@@ -1,6 +1,7 @@
 package com.paras.bsn.handler;
 
 import jakarta.mail.MessagingException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -80,6 +81,17 @@ public class GlobalExceptionHandler {
                 .status(INTERNAL_SERVER_ERROR)
                 .body(ExceptionResponse.builder()
                         .businessErrorDescription("Internal Server Error, Please contact admin.")
+                        .error(exp.getMessage())
+                        .build());
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ExceptionResponse> handleException(DataIntegrityViolationException exp) {
+        return ResponseEntity
+                .status(CONFLICT)
+                .body(ExceptionResponse.builder()
+                        .businessErrorCode(USER_ALREADY_EXISTS.getCode())
+                        .businessErrorDescription(USER_ALREADY_EXISTS.getDescription())
                         .error(exp.getMessage())
                         .build());
     }

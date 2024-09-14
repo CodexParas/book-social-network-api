@@ -53,7 +53,6 @@ public class AuthenticationService {
                 .build();
         userRepository.save(user);
         sendValidationEmail(user);
-
     }
 
     private void sendValidationEmail(User user) throws MessagingException {
@@ -111,7 +110,7 @@ public class AuthenticationService {
         Token savedToken = tokenRepository.findByToken(token)
                 // todo check if token is expired
                 .orElseThrow(() -> new RuntimeException("Token not found"));
-        if(LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {
+        if (LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {
             sendValidationEmail(savedToken.getUser());
             throw new RuntimeException("Token expired. A new token has been sent to your email");
         }
