@@ -12,7 +12,10 @@
 
 ## Overview
 
-The backend of the Book Social Network is built with Spring Boot 3 and provides RESTful APIs for managing user accounts, book collections, and community interactions. It handles user registration, secure email validation, book management, and book borrowing/return functionality with an approval system for returns. The application ensures security using JWT tokens and adheres to best practices in REST API design.
+The backend of the Book Social Network is built with Spring Boot 3 and provides RESTful APIs for managing user accounts,
+book collections, and community interactions. It handles user registration, secure email validation, book management,
+and book borrowing/return functionality with an approval system for returns. The application ensures security using JWT
+tokens and adheres to best practices in REST API design.
 
 ## Features
 
@@ -74,7 +77,8 @@ By working on this backend project, you will learn:
 
 2. **Set up the database:**
 
-   Configure your PostgreSQL database and update the `application.properties` or `application.yml` file with your database credentials.
+   Configure your PostgreSQL database and update the `application.properties` or `application.yml` file with your
+   database credentials.
 
 3. **Run the application:**
 
@@ -84,7 +88,8 @@ By working on this backend project, you will learn:
 
 4. **Access the API documentation:**
 
-   Once the application is running, you can access the API documentation at `http://localhost:8080/swagger-ui.html`.
+   Once the application is running, you can access the API documentation at
+   `http://localhost:8080/api/v1/swagger-ui/index.html`.
 
 ### Dockerization (Optional)
 
