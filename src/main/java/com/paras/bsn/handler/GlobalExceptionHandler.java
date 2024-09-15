@@ -1,5 +1,6 @@
 package com.paras.bsn.handler;
 
+import com.paras.bsn.exception.OperationNotPermittedException;
 import jakarta.mail.MessagingException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
@@ -92,6 +93,15 @@ public class GlobalExceptionHandler {
                 .body(ExceptionResponse.builder()
                         .businessErrorCode(USER_ALREADY_EXISTS.getCode())
                         .businessErrorDescription(USER_ALREADY_EXISTS.getDescription())
+                        .error(exp.getMessage())
+                        .build());
+    }
+
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<ExceptionResponse> handleException(OperationNotPermittedException exp) {
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(ExceptionResponse.builder()
                         .error(exp.getMessage())
                         .build());
     }
