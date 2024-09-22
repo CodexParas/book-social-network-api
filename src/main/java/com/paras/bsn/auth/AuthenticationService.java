@@ -1,6 +1,5 @@
 package com.paras.bsn.auth;
 
-import com.decimaltech.boot.vahanautils.Response;
 import com.paras.bsn.email.EmailService;
 import com.paras.bsn.email.EmailTemplateName;
 import com.paras.bsn.role.RoleRepository;

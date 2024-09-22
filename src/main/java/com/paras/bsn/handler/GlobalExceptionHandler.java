@@ -67,9 +67,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ExceptionResponse> handleException(MethodArgumentNotValidException exp) {
         Set<String> errors = new HashSet<>();
-        exp.getBindingResult().getAllErrors().forEach(error -> {
-            errors.add(error.getDefaultMessage());
-        });
+        exp.getBindingResult().getAllErrors().forEach(error ->
+                errors.add(error.getDefaultMessage())
+        );
         return ResponseEntity
                 .status(BAD_REQUEST)
                 .body(ExceptionResponse.builder()
