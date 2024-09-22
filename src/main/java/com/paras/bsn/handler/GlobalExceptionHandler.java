@@ -2,6 +2,7 @@ package com.paras.bsn.handler;
 
 import com.paras.bsn.exception.OperationNotPermittedException;
 import jakarta.mail.MessagingException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -18,6 +19,7 @@ import static com.paras.bsn.handler.BusinessErrorCods.*;
 import static org.springframework.http.HttpStatus.*;
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(LockedException.class)
@@ -77,7 +79,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ExceptionResponse> handleException(Exception exp) {
-        exp.printStackTrace();
+        log.error("Exception occurred: ", exp);
         return ResponseEntity
                 .status(INTERNAL_SERVER_ERROR)
                 .body(ExceptionResponse.builder()
